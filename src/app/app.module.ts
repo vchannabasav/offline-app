@@ -6,10 +6,12 @@ import { OfflineComponentComponent } from "./offline-component/offline-component
 import { AgGridModule } from "ag-grid-angular";
 import { OfflineService } from "./offline-component/offline.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, OfflineComponentComponent],
-  imports: [BrowserModule, AgGridModule.withComponents([]), HttpClientModule],
+  imports: [BrowserModule, AgGridModule.withComponents([]), HttpClientModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [OfflineService],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { SwUpdate } from "@angular/service-worker";
 
 @Component({
   selector: "offline-component",
@@ -17,7 +18,11 @@ export class OfflineComponentComponent implements OnInit {
     { make: "Ford", model: "Mondeo", price: 32000 },
     { make: "Porsche", model: "Boxter", price: 72000 }
   ];
-  constructor() {}
+  constructor(private updates: SwUpdate) {
+    updates.available.subscribe(event => {
+      updates.activateUpdate().then(() => document.location.reload());
+    });
+  }
 
   ngOnInit() {}
 }

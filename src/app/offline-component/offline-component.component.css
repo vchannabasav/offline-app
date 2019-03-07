@@ -1,8 +1,4 @@
 .grid {
-  height: calc(100vh - 100px);
-  width: calc(100vw - 20px);
-}
-
-div {
-  margin-top: 80px;
+  height: 500px;
+  width: 100%;
 }
