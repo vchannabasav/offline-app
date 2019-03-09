@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { SwUpdate } from "@angular/service-worker";
 
+declare var Offline: any;
+
 @Component({
   selector: "offline-component",
   templateUrl: "./offline-component.component.html",
@@ -18,11 +20,25 @@ export class OfflineComponentComponent implements OnInit {
     { make: "Ford", model: "Mondeo", price: 32000 },
     { make: "Porsche", model: "Boxter", price: 72000 }
   ];
-  constructor(private updates: SwUpdate) {
+  constructor(updates: SwUpdate) {
     updates.available.subscribe(event => {
-      updates.activateUpdate().then(() => document.location.reload());
+      console.log("updates");
+      const c = confirm(
+        "Updates are available, do you want to update an application ?"
+      );
+      console.log("c value", c);
+      if (c === true) {
+        updates.activateUpdate().then(() => document.location.reload());
+      }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Offline.options = {
+    //   checkOnLoad: true
+    // };
+    // Offline.on("up", () => {
+    //   document.location.reload();
+    // });
+  }
 }
