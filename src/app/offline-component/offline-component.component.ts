@@ -34,11 +34,11 @@ export class OfflineComponentComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Offline.options = {
-    //   checkOnLoad: true
-    // };
-    // Offline.on("up", () => {
-    //   document.location.reload();
-    // });
+    Offline.options = {
+      checkOnLoad: true
+    };
+    Offline.on("up", () => {
+      document.location.reload();
+    });
   }
 }
